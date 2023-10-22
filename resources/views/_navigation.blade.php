@@ -16,10 +16,11 @@
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="">Create Event</a>
+                    <a class="nav-link" href="{{ route('create-event') }} ">Create Event</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Profile</a>
+                    <!-- username -->
+                    <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
                 </li>
 
                 @endguest
@@ -28,15 +29,16 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            @auth
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="btn btn-secondary m-1">
                 Logout
             </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
+            @endauth
         </div>
     </div>
 </nav>
